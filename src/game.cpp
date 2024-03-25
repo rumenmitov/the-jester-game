@@ -80,7 +80,7 @@ void Game::HandleEvents() {
 
 void Game::Update() {
   map->Update(lvl1);
-  player->Update();
+  player->Update(*map);
 }
 
 void Game::Render() {

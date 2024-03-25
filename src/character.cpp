@@ -6,6 +6,8 @@
 #include "../include/GameObject.h"
 #include "../include/Texture.h"
 
+#include "../include/Map.h"
+
 Character::Character(const char* textureSheet, int x_init, int y_init, int startingHP, int speed) : GameObject(textureSheet, x_init, y_init) {
   maxHP = currentHP = startingHP;
   speedMod = speed;
@@ -23,27 +25,31 @@ void Character::Move(const char* direction) {
     }
 }
 
-void Character::Update() {
+void Character::Update(Map& map) {
   int row = dest.y / 32;
   int col = dest.x / 32;
 
   if (isMoving.up && dest.y - (32 * speedMod) >= 0) {
-    dest.y -= 32 * speedMod;
+    /* dest.y -= 32 * speedMod; */
+      map.setY(map.getY() - 1);
   }
   isMoving.up = false;
 
   if (isMoving.down && dest.y + (32 * speedMod) < Game::windowHeight) {
-    dest.y += 32 * speedMod;
+    /* dest.y += 32 * speedMod; */
+      map.setY(map.getY() + 1);
   }
   isMoving.down = false;
 
   if (isMoving.left && dest.x - (32 * speedMod) >= 0) {
-    dest.x -= 32 * speedMod;
+    /* dest.x -= 32 * speedMod; */
+      map.setX(map.getX() - 1);
   }
   isMoving.left = false;
 
   if (isMoving.right && dest.x + (32 * speedMod) < Game::windowWidth) {
-    dest.x += 32 * speedMod;
+    /* dest.x += 32 * speedMod; */
+      map.setX(map.getX() + 1);
   }
   isMoving.right = false;
 }

@@ -3,6 +3,8 @@
 
 #include "GameObject.h"
 
+#include "../include/Map.h"
+
 struct movement {
   bool up = false;
   bool down = false;
@@ -21,7 +23,7 @@ class Character : public GameObject {
     Character(const char* textureSheet, int x_init, int y_init, int startingHP, int speed);
 
     void Move(const char* direction);
-    void Update();
+    void Update(Map& map);
     void Attack();
 
     void Render();
